@@ -12,16 +12,25 @@
 
 ## Contents
 
-*   [What is this?](#what-is-this)
-*   [When should I use this?](#when-should-i-use-this)
-*   [Install](#install)
-*   [Use](#use)
-*   [API](#api)
-    *   [`unified().use(retextSmartypants[, options])`](#unifieduseretextsmartypants-options)
-*   [Types](#types)
-*   [Compatibility](#compatibility)
-*   [Contribute](#contribute)
-*   [License](#license)
+- [retext-smartypants](#retext-smartypants)
+  - [Contents](#contents)
+  - [What is this?](#what-is-this)
+  - [When should I use this?](#when-should-i-use-this)
+  - [Install](#install)
+  - [Use](#use)
+  - [API](#api)
+    - [`unified().use(retextSmartypants[, options])`](#unifieduseretextsmartypants-options)
+        - [`options`](#options)
+          - [`options.quotes`](#optionsquotes)
+          - [`options.openingQuotes`](#optionsopeningquotes)
+          - [`options.closingQuotes`](#optionsclosingquotes)
+          - [`options.ellipses`](#optionsellipses)
+          - [`options.backticks`](#optionsbackticks)
+          - [`options.dashes`](#optionsdashes)
+  - [Types](#types)
+  - [Compatibility](#compatibility)
+  - [Contribute](#contribute)
+  - [License](#license)
 
 ## What is this?
 
@@ -110,8 +119,7 @@ Characters to use for closing quotes `{single: '’', double: '”'}`.
 
 Create smart ellipses (`boolean`, default: `true`).
 
-Converts triple dot characters (with or without spaces) into a single unicode
-ellipsis character.
+Converts triple dot characters into a single unicode ellipsis character.
 
 ###### `options.backticks`
 
