@@ -1,5 +1,5 @@
 {
-  "name": "retext-smartypants",
+  "name": "@davidcelis/retext-smartypants",
   "version": "5.2.0",
   "description": "retext plugin to implement SmartyPants",
   "license": "MIT",
@@ -13,15 +13,12 @@
     "dashes",
     "ellipses"
   ],
-  "repository": "retextjs/retext-smartypants",
-  "bugs": "https://github.com/retextjs/retext-smartypants/issues",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/unified"
-  },
-  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "repository": "davidcelis/retext-smartypants",
+  "bugs": "https://github.com/davidcelis/retext-smartypants/issues",
+  "author": "David Celis <me@davidcel.is> (https://davidcel.is)",
   "contributors": [
-    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+    "David Celis <me@davidcel.is> (https://davidcel.is)"
   ],
   "sideEffects": false,
   "type": "module",
