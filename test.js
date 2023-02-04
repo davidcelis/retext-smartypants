@@ -567,90 +567,93 @@ test('Ellipses', (t) => {
     st.end()
   })
 
-  t.test('should replace three padded full stops with spaces', (st) => {
+  t.test('should not replace padded full stops', (st) => {
     st.equal(
       processor.processSync('Alfred . . . Bertrand.').toString(),
-      'Alfred \u2026 Bertrand.'
-    )
-
-    st.end()
-  })
-
-  t.test('should replace three padded initial full stops with spaces', (st) => {
-    st.equal(
-      processor.processSync('. . . Alfred Bertrand.').toString(),
-      '\u2026 Alfred Bertrand.'
-    )
-
-    st.end()
-  })
-
-  t.test('should replace three padded final full stops with spaces', (st) => {
-    st.equal(
-      processor.processSync('Alfred Bertrand . . .').toString(),
-      'Alfred Bertrand \u2026'
-    )
-
-    st.end()
-  })
-
-  t.test('should replace three full stops with spaces', (st) => {
-    st.equal(
-      processor.processSync('Alfred. . . Bertrand.').toString(),
-      'Alfred\u2026 Bertrand.'
-    )
-
-    st.end()
-  })
-
-  t.test('should replace three initial full stops with spaces', (st) => {
-    st.equal(
-      processor.processSync('. . .Alfred Bertrand.').toString(),
-      '\u2026Alfred Bertrand.'
-    )
-
-    st.end()
-  })
-
-  t.test('should replace three final full stops with spaces', (st) => {
-    st.equal(
-      processor.processSync('Alfred Bertrand. . .').toString(),
-      'Alfred Bertrand\u2026'
-    )
-
-    st.end()
-  })
-
-  t.test('should replace more than three full stops', (st) => {
-    st.equal(
-      processor.processSync('Alfred..... Bertrand.').toString(),
-      'Alfred\u2026 Bertrand.'
-    )
-
-    st.equal(
-      processor.processSync('Alfred bertrand....').toString(),
-      'Alfred bertrand\u2026'
-    )
-
-    st.equal(
-      processor.processSync('......Alfred bertrand.').toString(),
-      '\u2026Alfred bertrand.'
+      'Alfred . . . Bertrand.'
     )
 
     st.end()
   })
 
   t.test(
-    'should replace more than three full stops with funky spacing',
+    'should not replace three padded initial full stops with spaces',
     (st) => {
       st.equal(
-        processor.processSync('Alfred .. .. . Bertrand.').toString(),
-        'Alfred \u2026 Bertrand.'
+        processor.processSync('. . . Alfred Bertrand.').toString(),
+        '. . . Alfred Bertrand.'
       )
 
       st.end()
     }
   )
+
+  t.test(
+    'should not replace three padded final full stops with spaces',
+    (st) => {
+      st.equal(
+        processor.processSync('Alfred Bertrand . . .').toString(),
+        'Alfred Bertrand . . .'
+      )
+
+      st.end()
+    }
+  )
+
+  t.test('should not replace three full stops with spaces', (st) => {
+    st.equal(
+      processor.processSync('Alfred. . . Bertrand.').toString(),
+      'Alfred. . . Bertrand.'
+    )
+
+    st.end()
+  })
+
+  t.test('should not replace three initial full stops with spaces', (st) => {
+    st.equal(
+      processor.processSync('. . .Alfred Bertrand.').toString(),
+      '. . .Alfred Bertrand.'
+    )
+
+    st.end()
+  })
+
+  t.test('should not replace three final full stops with spaces', (st) => {
+    st.equal(
+      processor.processSync('Alfred Bertrand. . .').toString(),
+      'Alfred Bertrand. . .'
+    )
+
+    st.end()
+  })
+
+  t.test('should only replace full stops in triplets', (st) => {
+    st.equal(
+      processor.processSync('Alfred..... Bertrand.').toString(),
+      'Alfred\u2026.. Bertrand.'
+    )
+
+    st.equal(
+      processor.processSync('Alfred bertrand....').toString(),
+      'Alfred bertrand\u2026.'
+    )
+
+    st.equal(
+      processor.processSync('......Alfred bertrand.').toString(),
+      '\u2026\u2026Alfred bertrand.'
+    )
+
+    st.end()
+  })
+
+  t.test('should not replace full stops with funky spacing', (st) => {
+    st.equal(
+      processor.processSync('Alfred .. .. . Bertrand.').toString(),
+      'Alfred .. .. . Bertrand.'
+    )
+
+    st.end()
+  })
 
   t.test('should NOT replace less than three full stops', (st) => {
     st.equal(
