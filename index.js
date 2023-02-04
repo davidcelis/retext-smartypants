@@ -146,62 +146,13 @@ function createEducators(options) {
        *
        * @type {Method}
        */
-      true(node, index, parent) {
+      true(node, _index, _parent) {
         const value = node.value
-        const siblings = parent.children
 
         // Simple node with three dots and without white-space.
-        if (/^\.{3,}$/.test(node.value)) {
-          node.value = '…'
-          return
+        if (/^\.{3,}$/.test(value)) {
+          node.value = value.replace(/\.{3}/g, '…')
         }
-
-        if (!/^\.+$/.test(value)) {
-          return
-        }
-
-        // Search for dot-nodes with white-space between.
-        /** @type {Array<SentenceContent>} */
-        const nodes = []
-        let position = index
-        let count = 1
-
-        // It’s possible that the node is merged with an adjacent word-node.  In that
-        // code, we cannot transform it because there’s no reference to the
-        // grandparent.
-        while (--position > 0) {
-          let sibling = siblings[position]
-
-          if (sibling.type !== 'WhiteSpaceNode') {
-            break
-          }
-
-          const queue = sibling
-          sibling = siblings[--position]
-
-          if (
-            sibling &&
-            (sibling.type === 'PunctuationNode' ||
-              sibling.type === 'SymbolNode') &&
-            /^\.+$/.test(sibling.value)
-          ) {
-            nodes.push(queue, sibling)
-
-            count++
-
-            continue
-          }
-
-          break
-        }
-
-        if (count < 3) {
-          return
-        }
-
-        siblings.splice(index - nodes.length, nodes.length)
-
-        node.value = '…'
       }
     },
     quotes: {
